@@ -11,7 +11,8 @@ import SwiftUI
 struct FlightApp_WB_TestTaskApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            FlightView()
+                .preferredColorScheme(.light)
         }
     }
 }

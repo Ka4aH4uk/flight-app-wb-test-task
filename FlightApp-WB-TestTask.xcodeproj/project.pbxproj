@@ -8,17 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		C91935E72AE03C1F0043EC75 /* FlightApp_WB_TestTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91935E62AE03C1F0043EC75 /* FlightApp_WB_TestTaskApp.swift */; };
-		C91935E92AE03C1F0043EC75 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91935E82AE03C1F0043EC75 /* ContentView.swift */; };
 		C91935EB2AE03C2A0043EC75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91935EA2AE03C2A0043EC75 /* Assets.xcassets */; };
 		C91935EE2AE03C2A0043EC75 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C91935ED2AE03C2A0043EC75 /* Preview Assets.xcassets */; };
+		C91935F82AE03DA60043EC75 /* FlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91935F72AE03DA60043EC75 /* FlightView.swift */; };
+		C91935FA2AE03DD80043EC75 /* FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91935F92AE03DD80043EC75 /* FlightViewModel.swift */; };
+		C91935FC2AE03E080043EC75 /* FlightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91935FB2AE03E080043EC75 /* FlightData.swift */; };
+		C91935FE2AE03E4E0043EC75 /* FlightDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91935FD2AE03E4E0043EC75 /* FlightDetailView.swift */; };
+		C91936002AE03E6C0043EC75 /* FlightCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91935FF2AE03E6C0043EC75 /* FlightCellView.swift */; };
+		C91936032AE03F050043EC75 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = C91936022AE03F050043EC75 /* Lottie */; };
+		C91936062AE03F570043EC75 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91936052AE03F570043EC75 /* LottieView.swift */; };
+		C919360A2AE040D70043EC75 /* flight.json in Resources */ = {isa = PBXBuildFile; fileRef = C91936092AE040D70043EC75 /* flight.json */; };
+		C919360D2AE041920043EC75 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C919360C2AE041920043EC75 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C91935E32AE03C1F0043EC75 /* FlightApp-WB-TestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FlightApp-WB-TestTask.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C91935E62AE03C1F0043EC75 /* FlightApp_WB_TestTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightApp_WB_TestTaskApp.swift; sourceTree = "<group>"; };
-		C91935E82AE03C1F0043EC75 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C91935EA2AE03C2A0043EC75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C91935ED2AE03C2A0043EC75 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C91935F72AE03DA60043EC75 /* FlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightView.swift; sourceTree = "<group>"; };
+		C91935F92AE03DD80043EC75 /* FlightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightViewModel.swift; sourceTree = "<group>"; };
+		C91935FB2AE03E080043EC75 /* FlightData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightData.swift; sourceTree = "<group>"; };
+		C91935FD2AE03E4E0043EC75 /* FlightDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightDetailView.swift; sourceTree = "<group>"; };
+		C91935FF2AE03E6C0043EC75 /* FlightCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightCellView.swift; sourceTree = "<group>"; };
+		C91936052AE03F570043EC75 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		C91936092AE040D70043EC75 /* flight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = flight.json; path = "../../../../Архив/flight.json"; sourceTree = "<group>"; };
+		C919360C2AE041920043EC75 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C91936032AE03F050043EC75 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +68,11 @@
 			isa = PBXGroup;
 			children = (
 				C91935E62AE03C1F0043EC75 /* FlightApp_WB_TestTaskApp.swift */,
-				C91935E82AE03C1F0043EC75 /* ContentView.swift */,
+				C91935F42AE03D4D0043EC75 /* Model */,
+				C91935F52AE03D550043EC75 /* View */,
+				C91935F62AE03D600043EC75 /* ViewModel */,
+				C91936042AE03F440043EC75 /* Lottie */,
+				C919360B2AE0417A0043EC75 /* Extension */,
 				C91935EA2AE03C2A0043EC75 /* Assets.xcassets */,
 				C91935EC2AE03C2A0043EC75 /* Preview Content */,
 			);
@@ -65,6 +85,49 @@
 				C91935ED2AE03C2A0043EC75 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C91935F42AE03D4D0043EC75 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C91935FB2AE03E080043EC75 /* FlightData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C91935F52AE03D550043EC75 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C91935F72AE03DA60043EC75 /* FlightView.swift */,
+				C91935FD2AE03E4E0043EC75 /* FlightDetailView.swift */,
+				C91935FF2AE03E6C0043EC75 /* FlightCellView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C91935F62AE03D600043EC75 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C91935F92AE03DD80043EC75 /* FlightViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C91936042AE03F440043EC75 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				C91936052AE03F570043EC75 /* LottieView.swift */,
+				C91936092AE040D70043EC75 /* flight.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
+		C919360B2AE0417A0043EC75 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C919360C2AE041920043EC75 /* Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +146,9 @@
 			dependencies = (
 			);
 			name = "FlightApp-WB-TestTask";
+			packageProductDependencies = (
+				C91936022AE03F050043EC75 /* Lottie */,
+			);
 			productName = "FlightApp-WB-TestTask";
 			productReference = C91935E32AE03C1F0043EC75 /* FlightApp-WB-TestTask.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +177,9 @@
 				Base,
 			);
 			mainGroup = C91935DA2AE03C1F0043EC75;
+			packageReferences = (
+				C91936012AE03F050043EC75 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = C91935E42AE03C1F0043EC75 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,6 +194,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C919360A2AE040D70043EC75 /* flight.json in Resources */,
 				C91935EE2AE03C2A0043EC75 /* Preview Assets.xcassets in Resources */,
 				C91935EB2AE03C2A0043EC75 /* Assets.xcassets in Resources */,
 			);
@@ -137,8 +207,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C91935E92AE03C1F0043EC75 /* ContentView.swift in Sources */,
+				C91935FA2AE03DD80043EC75 /* FlightViewModel.swift in Sources */,
+				C91935F82AE03DA60043EC75 /* FlightView.swift in Sources */,
+				C91936002AE03E6C0043EC75 /* FlightCellView.swift in Sources */,
 				C91935E72AE03C1F0043EC75 /* FlightApp_WB_TestTaskApp.swift in Sources */,
+				C91936062AE03F570043EC75 /* LottieView.swift in Sources */,
+				C91935FE2AE03E4E0043EC75 /* FlightDetailView.swift in Sources */,
+				C91935FC2AE03E080043EC75 /* FlightData.swift in Sources */,
+				C919360D2AE041920043EC75 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,8 +354,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -287,9 +363,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "k4.FlightApp-WB-TestTask";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -307,8 +386,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,9 +395,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "k4.FlightApp-WB-TestTask";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -344,6 +426,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C91936012AE03F050043EC75 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C91936022AE03F050043EC75 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C91936012AE03F050043EC75 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C91935DB2AE03C1F0043EC75 /* Project object */;
 }
