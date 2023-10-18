@@ -49,7 +49,7 @@ struct FlightView: View {
                     .listStyle(.plain)
                 }
             }
-            .navigationBarTitle(viewModel.isLoading ? "" : "Авиабилеты", displayMode: .large)
+            .navigationBarTitle(viewModel.isLoading ? "" : "Авиабилеты", displayMode: .inline)
         }
     }
 }

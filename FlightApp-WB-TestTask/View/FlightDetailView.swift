@@ -9,14 +9,14 @@ import SwiftUI
 import TipKit
 
 struct FlightDetailView: View {
-    @Environment(\.dismiss) private var dismiss
     @ObservedObject var viewModel: FlightViewModel
     @State var flight: Flight
     @State var isOnBaggage = false
     @State var isOnNotification = false
-    @State var receiveNotification = false
-    @State private var ticketSeller: AirTicketSeller = .aviaSales
-    private let likedFlightTip = LikedFlightTip()
+    @State var showAlert = false
+    @State var ticketSeller: AirTicketSeller = .aviaSales
+    @State var selectedURL: URL?
+    let likedFlightTip = LikedFlightTip()
     
     enum AirTicketSeller: String, CaseIterable, Identifiable {
         case aviaSales = "Aviasales"
@@ -33,9 +33,9 @@ struct FlightDetailView: View {
                 LinearGradient(colors: [.indigo.opacity(0.1), .blue.opacity(0.3)], startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
                 
-                VStack {
+                ScrollView {
                     HStack {
-                        Text("\(Int(flight.price ?? 0)) \u{20BD}")
+                        Text("\(flight.price ?? 0) \u{20BD}")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                     }.padding(.top)
@@ -55,62 +55,159 @@ struct FlightDetailView: View {
                     }
                     
                     List {
-                        Section(header: Text("Багаж").bold(true)) {
-                            Text(isOnBaggage ? "Багаж включен" : "Без багажа")
-                                .foregroundStyle(isOnBaggage ? .green : .black)
-                            Toggle(isOn: $isOnBaggage) {
+                        Text(isOnBaggage ? "Багаж включен" : "Без багажа")
+                            .foregroundStyle(isOnBaggage ? .green : .black)
+                        Toggle(isOn: $isOnBaggage) {
+                            HStack {
+                                Image(systemName: "suitcase.rolling.fill")
+                                    .foregroundStyle(isOnBaggage ? .green : .black)
+                                Text("Добавить багаж")
+                            }
+                            .frame(height: 150)
+                            .scrollContentBackground(.hidden)
+                            .scrollDisabled(true)
+                            .background(.clear)
+                            .padding(.top, -20)
+                            
+                            HStack {
+                                Text("\(flight.startCity?.rawValue ?? "") — \(flight.endCity ?? "")")
+                                    .font(.headline)
+                                Spacer()
+                            }
+                            .padding(.leading, 20)
+                            
+                            VStack(spacing: 20) {
                                 HStack {
-                                    Image(systemName: "suitcase.rolling.fill")
-                                        .foregroundStyle(isOnBaggage ? .green : .black)
-                                    Text("Добавить багаж")
+                                    Image("logo")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                    Text("FlightApp")
+                                        .font(.caption)
+                                    Spacer()
+                                    Button { } label: {
+                                        Label("Подробнее", systemImage: "info")
+                                            .font(.caption2)
+                                            .foregroundStyle(.white.opacity(0.9))
+                                    }
+                                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+                                    .background {
+                                        Capsule()
+                                            .fill(.blue.opacity(0.6))
+                                    }
                                 }
+                                .padding(.leading, 20).padding(.trailing, 20).padding(.top, 10)
+                                
+                                HStack(spacing: 20) {
+                                    Image(systemName: "airplane.departure")
+                                    Text("\(flight.startLocationCode?.rawValue ?? "")")
+                                    Text("\(flight.formattedDate(dateString: flight.startDate))")
+                                    Spacer()
+                                }
+                                .font(.title3)
+                                .padding(.leading, 20).padding(.trailing, 20)
+                                
+                                HStack(spacing: 20) {
+                                    Image(systemName: "airplane.arrival")
+                                    Text("\(flight.endLocationCode ?? "")")
+                                    Text("\(flight.formattedDate(dateString: flight.startDate))")
+                                        .hidden()
+                                }
+                                .font(.title3)
+                                .padding(.leading, 20).padding(.trailing, 20).padding(.bottom, 20)
                             }
+                            .background()
+                            .cornerRadius(12)
+                            .padding(.leading, 20).padding(.trailing, 20)
+                            
+                            HStack {
+                                Text("\(flight.endCity ?? "") — \(flight.startCity?.rawValue ?? "")")
+                                    .font(.headline)
+                                Spacer()
+                            }
+                            .padding(.leading, 20).padding(.top, 20)
+                            
+                            VStack(spacing: 20) {
+                                HStack {
+                                    Image("logo")
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                    Text("FlightApp")
+                                        .font(.caption)
+                                    Spacer()
+                                    Button { } label: {
+                                        Label("Подробнее", systemImage: "info")
+                                            .font(.caption2)
+                                            .foregroundStyle(.white.opacity(0.9))
+                                    }
+                                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+                                    .background {
+                                        Capsule()
+                                            .fill(.blue.opacity(0.6))
+                                    }
+                                }
+                                .padding(.leading, 20).padding(.trailing, 20).padding(.top, 10)
+                                
+                                HStack(spacing: 20) {
+                                    Image(systemName: "airplane.departure")
+                                    Text("\(flight.endLocationCode ?? "")")
+                                    Text("\(flight.formattedDate(dateString: flight.endDate?.rawValue))")
+                                    Spacer()
+                                }
+                                .font(.title3)
+                                .padding(.leading, 20).padding(.trailing, 20)
+                                
+                                HStack(spacing: 20) {
+                                    Image(systemName: "airplane.arrival")
+                                    Text("\(flight.startLocationCode?.rawValue ?? "")")
+                                    Text("\(flight.formattedDate(dateString: flight.endDate?.rawValue))")
+                                        .hidden()
+                                    Spacer()
+                                }
+                                .font(.title3)
+                                .padding(.leading, 20).padding(.trailing, 20).padding(.bottom, 10)
+                            }
+                            .background()
+                            .cornerRadius(12)
+                            .padding(.leading, 20).padding(.trailing, 20)
+                            
+                            Spacer()
+                        }
+                        
+                        VStack {
+                            Spacer()
+                            Button {
+                                let url: URL?
+                                switch ticketSeller {
+                                case .aviaSales:
+                                    url = URL(string: "https://www.aviasales.ru")
+                                case .kupiBilet:
+                                    url = URL(string: "https://www.kupibilet.ru")
+                                case .aeroflot:
+                                    url = URL(string: "https://www.aeroflot.ru")
+                                case .ott:
+                                    url = URL(string: "https://www.onetwotrip.com")
+                                case .wbTravel:
+                                    url = URL(string: "https://vmeste.wildberries.ru/")
+                                }
+                                
+                                if let url = url {
+                                    selectedURL = url
+                                }
+                            } label: {
+                                Text("Купить билет за \(flight.price ?? 0)")
+                                    .foregroundStyle(.white)
+                            }
+                            .frame(height: 50)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.orange.gradient)
+                            .cornerRadius(12)
+                            .padding(.leading, 20).padding(.trailing, 20).padding(.bottom)
+                            
+                            Spacer()
                         }
                     }
-                    .frame(height: 150)
-                    .scrollContentBackground(.hidden)
-                    .scrollDisabled(true)
-                    .background(.clear)
-                    .padding(.top, -20)
-                    
-                    HStack {
-                        Text("\(flight.startCity?.rawValue ?? "") - \(flight.endCity ?? "")")
-                            .font(.headline)
-                        Spacer()
-                    }
-                    .padding(.leading)
-                    
-                    HStack {
-                        Text("\(flight.endCity ?? "") - \(flight.startCity?.rawValue ?? "")")
-                            .font(.headline)
-                        Spacer()
-                    }
-                    .padding()//.leading)
-                    
-                    Form {
-                        Section(header: Text("Уведомления").bold(true)) {
-                            Toggle("Получать уведомления?", isOn: $isOnNotification)
-                            if isOnNotification {
-                                Toggle("Изменение цены", isOn: $receiveNotification)
-                            }
-                        }
-                    }
-                    .scrollContentBackground(.hidden)
-                    .scrollDisabled(true)
-                    .background(.clear)
-                    
-                    Group {
-                        Text("Город отправления: \(flight.startCity?.rawValue ?? "")")
-                        Text("Город прибытия: \(flight.endCity ?? "")")
-                        Text("Дата отправления: \(flight.startDate ?? "")")
-                        Text("Дата возвращения: \(flight.endDate?.rawValue ?? "")")
-                        Text("Цена в рублях: \(flight.price ?? 0)")
-                    }
-                    .font(.title2)
-                    
-                    Spacer()
                 }
-                .navigationBarTitle(Text(""), displayMode: .inline)
+                .navigationBarTitle("", displayMode: .inline)
             }
             .navigationBarItems(trailing: Button(action: {
                 viewModel.likeToggle(for: flight)
@@ -120,16 +217,22 @@ struct FlightDetailView: View {
                     .font(.title3)
             }))
         }
-        .navigationBarBackButtonHidden(true)
+        .sheet(item: $selectedURL) { url in
+            WebView(urlString: url.absoluteString)
+        }
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
+            ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    dismiss()
+                    isOnNotification.toggle()
+                    showAlert.toggle()
                 } label: {
-                    HStack {
-                        Image(systemName: "chevron.backward")
-                        Text("Все билеты")
-                    }
+                    Image(systemName: isOnNotification ? "bell.fill" : "bell")
+                        .font(.title2)
+                }
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text(""),
+                          message: isOnNotification ? Text("Создали подписку на билет \(flight.endCity ?? "") — \(flight.startCity?.rawValue ?? "") — \(flight.endCity ?? "")") : Text("Отменили подписку на билет \(flight.endCity ?? "") — \(flight.startCity?.rawValue ?? "") — \(flight.endCity ?? "")"),
+                          dismissButton: .default(Text("ОК")))
                 }
             }
             
@@ -149,7 +252,7 @@ struct FlightDetailView: View {
                 .displayFrequency(.monthly),
                 .datastoreLocation(.applicationDefault)
             ])
-
+            
         }
     }
 }

@@ -10,21 +10,36 @@ import SwiftUI
 struct FlightCellView: View {
     @StateObject var viewModel: FlightViewModel
     var flight: Flight
+    let randomNum = Int.random(in: 5...9)
     
     var body: some View {
         VStack {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
                     Group {
-                        Text("Отправление из: \(flight.startCity?.rawValue ?? "")")
-                        Text("Прибытие в: \(flight.endCity ?? "")")
-                        Text("Вылет: \(flight.startDate ?? "")")
-                        Text("Возвращение: \(flight.endDate?.rawValue ?? "")")
-                        Text("Цена: \(Int(flight.price ?? 0)) \u{20BD}")
+                        Text("\(flight.price ?? 0) \u{20BD}")
+                            .font(.title).bold()
+                        Text("Осталось \(randomNum) билетов по этой цене")
+                            .font(.caption2)
+                            .foregroundStyle(.red)
+
+                        HStack(spacing: 10) {
+                            Image(systemName: "airplane.departure")
+                            Text("\(flight.startCity?.rawValue ?? "")")
+                            Spacer()
+                        }
+                        
+                        HStack(spacing: 10) {
+                            Image(systemName: "airplane.arrival")
+                            Text("\(flight.endCity ?? "")")
+                            Spacer()
+                        }
+                        
+                        Text("Дата отправления: \(flight.formattedDate(dateString: flight.startDate))")
+                        Text("Дата возвращения: \(flight.formattedDate(dateString: flight.endDate?.rawValue))")
                     }
-                    .lineLimit(1)
-                    .font(.callout)
-                    .foregroundStyle(.black.opacity(0.8))
+                    .font(.subheadline)
+                    .foregroundStyle(.black)
                 }
                 
                 Spacer()
@@ -34,9 +49,14 @@ struct FlightCellView: View {
                         .foregroundColor(viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? .red : .blue.opacity(0.8))
                         .font(.title2)
                     Spacer()
+                    
+                    HStack {
+                        Image("logo")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    }
                 }
             }
-            .padding()
         }
     }
 }

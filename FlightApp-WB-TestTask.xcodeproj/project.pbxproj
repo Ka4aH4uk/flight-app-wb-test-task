@@ -19,6 +19,7 @@
 		C91936062AE03F570043EC75 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91936052AE03F570043EC75 /* LottieView.swift */; };
 		C919360A2AE040D70043EC75 /* flight.json in Resources */ = {isa = PBXBuildFile; fileRef = C91936092AE040D70043EC75 /* flight.json */; };
 		C919360D2AE041920043EC75 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C919360C2AE041920043EC75 /* Extension.swift */; };
+		C919360F2AE057E70043EC75 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C919360E2AE057E70043EC75 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		C91936052AE03F570043EC75 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		C91936092AE040D70043EC75 /* flight.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = flight.json; path = "../../../../Архив/flight.json"; sourceTree = "<group>"; };
 		C919360C2AE041920043EC75 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		C919360E2AE057E70043EC75 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				C91935F72AE03DA60043EC75 /* FlightView.swift */,
 				C91935FD2AE03E4E0043EC75 /* FlightDetailView.swift */,
 				C91935FF2AE03E6C0043EC75 /* FlightCellView.swift */,
+				C919360E2AE057E70043EC75 /* WebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				C91935E72AE03C1F0043EC75 /* FlightApp_WB_TestTaskApp.swift in Sources */,
 				C91936062AE03F570043EC75 /* LottieView.swift in Sources */,
 				C91935FE2AE03E4E0043EC75 /* FlightDetailView.swift in Sources */,
+				C919360F2AE057E70043EC75 /* WebView.swift in Sources */,
 				C91935FC2AE03E080043EC75 /* FlightData.swift in Sources */,
 				C919360D2AE041920043EC75 /* Extension.swift in Sources */,
 			);
