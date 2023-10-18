@@ -13,15 +13,18 @@ class FlightViewModel: ObservableObject {
     @Published var likedFlights: [Bool] = []
     @Published var error: Error? = nil
     
-    init() {
+    private let flightService: FlightServiceProtocol
+    
+    init(flightService: FlightServiceProtocol = FlightService()) {
+        self.flightService = flightService
         loadFlights()
     }
     
     func loadFlights() {
         isLoading = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            FlightService.shared.getFlights { [weak self] flights, error in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+            flightService.getFlights { [weak self] flights, error in
                 guard let self = self else {
                     return
                 }
