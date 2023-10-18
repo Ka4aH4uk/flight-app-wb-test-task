@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TipKit
 
 struct FlightDetailView: View {
     @Environment(\.dismiss) private var dismiss
@@ -14,8 +15,8 @@ struct FlightDetailView: View {
     @State var isOnBaggage = false
     @State var isOnNotification = false
     @State var receiveNotification = false
-    @State var receiveNews = false
     @State private var ticketSeller: AirTicketSeller = .aviaSales
+    private let likedFlightTip = LikedFlightTip()
     
     enum AirTicketSeller: String, CaseIterable, Identifiable {
         case aviaSales = "Aviasales"
@@ -91,7 +92,6 @@ struct FlightDetailView: View {
                             Toggle("Получать уведомления?", isOn: $isOnNotification)
                             if isOnNotification {
                                 Toggle("Изменение цены", isOn: $receiveNotification)
-                                Toggle("Новости", isOn: $receiveNews)
                             }
                         }
                     }
@@ -110,14 +110,14 @@ struct FlightDetailView: View {
                     
                     Spacer()
                 }
-                .navigationBarTitle("")
+                .navigationBarTitle(Text(""), displayMode: .inline)
             }
             .navigationBarItems(trailing: Button(action: {
                 viewModel.likeToggle(for: flight)
             }, label: {
-//                Image(systemName: viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? "heart.fill" : "heart")
-//                    .foregroundColor(viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? .red : .black.opacity(0.8))
-//                    .font(.title3)
+                Image(systemName: viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? "heart.fill" : "heart")
+                    .foregroundColor(viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? .red : .black.opacity(0.8))
+                    .font(.title3)
             }))
         }
         .navigationBarBackButtonHidden(true)
@@ -132,9 +132,47 @@ struct FlightDetailView: View {
                     }
                 }
             }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    viewModel.likeToggle(for: flight)
+                } label: {
+                    Image(systemName: viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? "airplane.circle.fill" : "airplane.circle")
+                        .foregroundColor(viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? .red : .blue.opacity(0.8))
+                        .font(.title)
+                        .popoverTip(likedFlightTip, arrowEdge: .top)
+                }
+            }
+        }
+        .task {
+            try? Tips.configure([
+                .displayFrequency(.monthly),
+                .datastoreLocation(.applicationDefault)
+            ])
+
         }
     }
 }
+
+struct LikedFlightTip: Tip {
+    var title: Text {
+        Text("Добавляй в избранное")
+    }
+    
+    var message: Text? {
+        Text("Ты можешь добавлять в избранное понравившиеся авиабилеты, чтобы не потерять")
+    }
+    
+    var image: Image? {
+        Image(systemName: "heart")
+    }
+    
+    var options: [TipOption] {
+        IgnoresDisplayFrequency(true)
+        MaxDisplayCount(1)
+    }
+}
+
 
 #Preview {
     let flightViewModel = FlightViewModel()

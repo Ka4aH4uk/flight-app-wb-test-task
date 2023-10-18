@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FlightView: View {
     @ObservedObject var viewModel = FlightViewModel()
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -19,7 +19,19 @@ struct FlightView: View {
                         .opacity(0.9)
                         .frame(width: 20, height: 20)
                 } else {
-                    Divider()
+                    Image("ticket")
+                        .overlay {
+                            HStack {
+                                Image("suitcase")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding(.top, 15).padding(.leading, 20)
+                                Spacer()
+                            }
+                            .padding()
+                        }
+                        .padding()
+                    
                     List(viewModel.flights, id: \.searchToken) { flight in
                         NavigationLink {
                             FlightDetailView(viewModel: viewModel, flight: flight)
@@ -37,7 +49,7 @@ struct FlightView: View {
                     .listStyle(.plain)
                 }
             }
-            .navigationBarTitle(viewModel.isLoading ? "" : "Авиаперелеты", displayMode: .large)
+            .navigationBarTitle(viewModel.isLoading ? "" : "Авиабилеты", displayMode: .large)
         }
     }
 }
