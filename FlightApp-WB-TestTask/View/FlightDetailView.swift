@@ -218,7 +218,7 @@ struct FlightDetailView: View {
             }))
         }
         .sheet(item: $selectedURL) { url in
-            WebView(urlString: url.absoluteString)
+            WebView(html: url.absoluteString)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

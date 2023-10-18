@@ -9,18 +9,16 @@ import SwiftUI
 import WebKit
 
 struct WebView: UIViewRepresentable {
-    let urlString: String
+    let html: String
 
     func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView()
-        return webView
+        return WKWebView()
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        if let url = URL(string: urlString) {
+        if let url = URL(string: html) {
             let request = URLRequest(url: url)
             uiView.load(request)
         }
     }
 }
-
