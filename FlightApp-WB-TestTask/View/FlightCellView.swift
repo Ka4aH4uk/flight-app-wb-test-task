@@ -21,37 +21,39 @@ struct FlightCellView: View {
                             .font(.title).bold()
                         Text("Осталось \(randomNum) билетов по этой цене")
                             .font(.caption2)
-                            .foregroundStyle(.red)
-                        
+                            .foregroundStyle(.red.opacity(0.9))
+
                         HStack(spacing: 10) {
                             Image(systemName: "airplane.departure")
                             Text("\(flight.startCity?.rawValue ?? "")")
                             Spacer()
                         }
+                        .fontWeight(.medium)
                         
                         HStack(spacing: 10) {
                             Image(systemName: "airplane.arrival")
                             Text("\(flight.endCity ?? "")")
                             Spacer()
                         }
+                        .fontWeight(.medium)
                         
                         Text("Дата отправления: \(flight.formattedDate(dateString: flight.startDate))")
                         Text("Дата возвращения: \(flight.formattedDate(dateString: flight.endDate?.rawValue))")
                     }
-                    .font(.subheadline)
+                    .font(.footnote)
                     .foregroundStyle(.black)
                 }
                 
                 Spacer()
                 
                 VStack(alignment: .trailing) {
-                    Image(systemName: viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? "airplane.circle.fill" : "airplane.circle")
-                        .foregroundColor(viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? .red : .blue.opacity(0.8))
-                        .font(.title2)
+//                    Image(systemName: viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? "airplane.circle.fill" : "airplane.circle")
+//                        .foregroundColor(viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? .red : .blue.opacity(0.8))
+//                        .font(.title2)
                     Spacer()
                     
                     HStack {
-                        Image("logo")
+                        Image(AppConstants.Design.Image.logo)
                             .resizable()
                             .frame(width: 30, height: 30)
                     }

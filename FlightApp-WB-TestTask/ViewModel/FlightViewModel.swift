@@ -11,6 +11,7 @@ class FlightViewModel: ObservableObject {
     @Published var flights: [Flight] = []
     @Published var isLoading: Bool = true
     @Published var likedFlights: [Bool] = []
+    @Published var error: Error? = nil
     
     init() {
         loadFlights()
@@ -19,19 +20,21 @@ class FlightViewModel: ObservableObject {
     func loadFlights() {
         isLoading = true
         
-        FlightService.shared.getFlights { [weak self] flights, error in
-            guard let self = self else {
-                return
-            }
-            
-            self.isLoading = false
-            
-            if let error = error {
-                print("Ошибка загрузки данных: \(error.localizedDescription)")
-            } else {
-                self.flights = flights ?? []
-                self.likedFlights = Array(repeating: false, count: self.flights.count)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            FlightService.shared.getFlights { [weak self] flights, error in
+                guard let self = self else {
+                    return
+                }
                 
+                self.isLoading = false
+                
+                if let error = error {
+                    self.error = error
+                    print("Ошибка загрузки данных: \(error.localizedDescription)")
+                } else {
+                    self.flights = flights ?? []
+                    self.likedFlights = Array(repeating: false, count: self.flights.count)
+                }
             }
         }
     }

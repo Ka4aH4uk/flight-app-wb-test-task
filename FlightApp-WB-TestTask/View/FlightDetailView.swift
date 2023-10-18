@@ -15,8 +15,13 @@ struct FlightDetailView: View {
     @State var isOnNotification = false
     @State var showAlert = false
     @State var ticketSeller: AirTicketSeller = .aviaSales
+    @State var baggagePrice = AppConstants.Content.baggagePrice
     @State var selectedURL: URL?
     let likedFlightTip = LikedFlightTip()
+    
+    var totalFlightPrice: Int {
+        return (flight.price ?? 0) + (isOnBaggage ? baggagePrice : 0)
+    }
     
     enum AirTicketSeller: String, CaseIterable, Identifiable {
         case aviaSales = "Aviasales"
@@ -35,33 +40,48 @@ struct FlightDetailView: View {
                 
                 ScrollView {
                     HStack {
-                        Text("\(flight.price ?? 0) \u{20BD}")
+                        Text("\(totalFlightPrice) \u{20BD}")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                    }.padding(.top)
+                    }
+                    .padding(.top)
                     
-                    Text("Лучшая цена за 1 пассажира")
+                    Text(AppConstants.Content.bestPriceText)
                         .font(.callout)
                     HStack(alignment: .center) {
                         Text("На")
                             .font(.callout)
                         Picker(selection: $ticketSeller) {
-                            Text(AirTicketSeller.aviaSales.rawValue.capitalized).tag(AirTicketSeller.aviaSales)
-                            Text(AirTicketSeller.kupiBilet.rawValue.capitalized).tag(AirTicketSeller.kupiBilet)
-                            Text(AirTicketSeller.aeroflot.rawValue.capitalized).tag(AirTicketSeller.aeroflot)
-                            Text(AirTicketSeller.ott.rawValue.capitalized).tag(AirTicketSeller.ott)
-                            Text(AirTicketSeller.wbTravel.rawValue.capitalized).tag(AirTicketSeller.wbTravel)
+                            Text(AirTicketSeller.aviaSales.rawValue).tag(AirTicketSeller.aviaSales)
+                            Text(AirTicketSeller.kupiBilet.rawValue).tag(AirTicketSeller.kupiBilet)
+                            Text(AirTicketSeller.aeroflot.rawValue).tag(AirTicketSeller.aeroflot)
+                            Text(AirTicketSeller.ott.rawValue).tag(AirTicketSeller.ott)
+                            Text(AirTicketSeller.wbTravel.rawValue).tag(AirTicketSeller.wbTravel)
                         } label: { }.padding(-10)
                     }
                     
                     Form {
-                        Text(isOnBaggage ? "Багаж включен" : "Без багажа")
-                            .foregroundStyle(isOnBaggage ? .green : .black)
+                        if isOnBaggage {
+                            Text(AppConstants.Content.baggageOnText)
+                                .foregroundStyle(.green)
+                        } else {
+                            Text(AppConstants.Content.baggageOffText)
+                                .foregroundStyle(.black)
+                        }
                         Toggle(isOn: $isOnBaggage) {
                             HStack {
                                 Image(systemName: "suitcase.rolling.fill")
                                     .foregroundStyle(isOnBaggage ? .green : .black)
-                                Text("Добавить багаж")
+                                Text(AppConstants.Content.addBaggageText)
+                                
+                                if isOnBaggage {
+                                    Text("")
+                                } else {
+                                    Text("+\(baggagePrice) \u{20BD}")
+                                        .foregroundStyle(.blue)
+                                        .font(.subheadline).bold()
+                                }
+
                             }
                         }
                     }
@@ -86,13 +106,13 @@ struct FlightDetailView: View {
                     }
                     .padding(.leading, 20)
                     
-                    VStack(spacing: 20) {
+                    VStack(spacing: 15) {
                         HStack {
-                            Image("logo")
+                            Image(AppConstants.Design.Image.logo)
                                 .resizable()
                                 .frame(width: 30, height: 30)
                             VStack(alignment: .leading) {
-                                Text("FlightApp")
+                                Text(AppConstants.Content.airlineText)
                                     .font(.caption)
                                 Text("3ч 40м в полете")
                                     .font(.caption)
@@ -101,8 +121,8 @@ struct FlightDetailView: View {
                             Spacer()
                             Button { } label: {
                                 NavigationLink {
-                                    Image("airport")
-                                    Text("Приятного полёта и\n мягкой посадки!")
+                                    Image(AppConstants.Design.Image.airport)
+                                    Text(AppConstants.Content.niceTripText)
                                         .font(.title).bold()
                                         .multilineTextAlignment(.center)
                                 } label: {
@@ -125,7 +145,8 @@ struct FlightDetailView: View {
                             Text("\(flight.formattedDate(dateString: flight.startDate))")
                             Spacer()
                         }
-                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .font(.headline)
                         .padding(.leading, 20).padding(.trailing, 20)
                         
                         HStack(spacing: 20) {
@@ -135,8 +156,9 @@ struct FlightDetailView: View {
                                 .hidden()
                             Spacer()
                         }
-                        .font(.title3)
-                        .padding(.leading, 20).padding(.trailing, 20).padding(.bottom, 20)
+                        .fontWeight(.semibold)
+                        .font(.headline)
+                        .padding(.leading, 20).padding(.trailing, 20).padding(.bottom, 15)
                     }
                     .background()
                     .cornerRadius(12)
@@ -157,13 +179,13 @@ struct FlightDetailView: View {
                     }
                     .padding(.leading, 20)
                     
-                    VStack(spacing: 20) {
+                    VStack(spacing: 15) {
                         HStack {
-                            Image("logo")
+                            Image(AppConstants.Design.Image.logo)
                                 .resizable()
                                 .frame(width: 30, height: 30)
                             VStack(alignment: .leading) {
-                                Text("FlightApp")
+                                Text(AppConstants.Content.airlineText)
                                     .font(.caption)
                                 Text("4ч 20м в полете")
                                     .font(.caption)
@@ -172,7 +194,7 @@ struct FlightDetailView: View {
                             Spacer()
                             Button { } label: {
                                 NavigationLink {
-                                    LottieView(name: "cap", loopMode: .repeat(1))
+                                    LottieView(name: AppConstants.Design.Lottie.lottieCap, loopMode: .repeat(1))
                                         .scaleEffect(0.6)
                                 } label: {
                                     Label("Подробнее", systemImage: "info")
@@ -194,7 +216,8 @@ struct FlightDetailView: View {
                             Text("\(flight.formattedDate(dateString: flight.endDate?.rawValue))")
                             Spacer()
                         }
-                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .font(.headline)
                         .padding(.leading, 20).padding(.trailing, 20)
                         
                         HStack(spacing: 20) {
@@ -204,8 +227,9 @@ struct FlightDetailView: View {
                                 .hidden()
                             Spacer()
                         }
-                        .font(.title3)
-                        .padding(.leading, 20).padding(.trailing, 20).padding(.bottom, 10)
+                        .fontWeight(.semibold)
+                        .font(.headline)
+                        .padding(.leading, 20).padding(.trailing, 20).padding(.bottom, 15)
                     }
                     .background()
                     .cornerRadius(12)
@@ -220,22 +244,22 @@ struct FlightDetailView: View {
                         let url: URL?
                         switch ticketSeller {
                         case .aviaSales:
-                            url = URL(string: "https://www.aviasales.ru")
+                            url = URL(string: AppConstants.API.aviaSalesURL)
                         case .kupiBilet:
-                            url = URL(string: "https://www.kupibilet.ru")
+                            url = URL(string: AppConstants.API.kupibiletURL)
                         case .aeroflot:
-                            url = URL(string: "https://www.aeroflot.ru")
+                            url = URL(string: AppConstants.API.aeroflotURL)
                         case .ott:
-                            url = URL(string: "https://www.onetwotrip.com")
+                            url = URL(string: AppConstants.API.ottURL)
                         case .wbTravel:
-                            url = URL(string: "https://vmeste.wildberries.ru/")
+                            url = URL(string: AppConstants.API.wbTravelURL)
                         }
                         
                         if let url = url {
                             selectedURL = url
                         }
                     } label: {
-                        Text("Купить билет за \(flight.price ?? 0) \u{20BD}")
+                        Text("Купить билет за \(totalFlightPrice) \u{20BD}")
                             .foregroundStyle(.white)
                     }
                     .frame(height: 50)
@@ -246,6 +270,10 @@ struct FlightDetailView: View {
                 }
                 .navigationBarTitle("", displayMode: .inline)
             }
+            .background(
+                LinearGradient(gradient: Gradient(colors: AppConstants.Design.Colors.gradientIndigoBlue), startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea()
+            )
         }
         .sheet(item: $selectedURL) { url in
             WebView(html: url.absoluteString)
@@ -270,10 +298,10 @@ struct FlightDetailView: View {
                 Button {
                     viewModel.likeToggle(for: flight)
                 } label: {
-                    //                    Image(systemName: viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? "airplane.circle.fill" : "airplane.circle")
-                    //                        .foregroundColor(viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? .red : .blue.opacity(0.8))
-                    //                        .font(.title)
-                    //                        .popoverTip(likedFlightTip, arrowEdge: .top)
+                    Image(systemName: viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? "airplane.circle.fill" : "airplane.circle")
+                        .foregroundColor(viewModel.likedFlights[viewModel.flights.firstIndex(where: { $0.searchToken == flight.searchToken }) ?? 0] ? .red : .blue.opacity(0.8))
+                        .font(.title)
+                        .popoverTip(likedFlightTip, arrowEdge: .top)
                 }
             }
         }
@@ -289,11 +317,11 @@ struct FlightDetailView: View {
 
 struct LikedFlightTip: Tip {
     var title: Text {
-        Text("Добавляй в избранное")
+        Text(AppConstants.Tip.titleTipText)
     }
     
     var message: Text? {
-        Text("Ты можешь добавлять в избранное понравившиеся авиабилеты, чтобы не потерять")
+        Text(AppConstants.Tip.messageTipText)
     }
     
     var image: Image? {
@@ -306,10 +334,8 @@ struct LikedFlightTip: Tip {
     }
 }
 
-
 #Preview {
     let flightViewModel = FlightViewModel()
     
     return FlightDetailView(viewModel: flightViewModel, flight: Flight(startDate: "10-12-2024", endDate: .the000101010000000000UTC, startLocationCode: .led, endLocationCode: "SVO", startCity: .санктПетербург, endCity: "Москва", serviceClass: "", seats: [], price: 5980, searchToken: ""))
 }
-

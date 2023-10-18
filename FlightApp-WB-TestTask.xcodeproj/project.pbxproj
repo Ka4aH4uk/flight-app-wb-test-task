@@ -23,6 +23,7 @@
 		C91936122AE05ED60043EC75 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C91936112AE05ED60043EC75 /* Alamofire */; };
 		C91936152AE0601F0043EC75 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91936142AE0601F0043EC75 /* NetworkManager.swift */; };
 		C91936172AE061FA0043EC75 /* cap.json in Resources */ = {isa = PBXBuildFile; fileRef = C91936162AE061FA0043EC75 /* cap.json */; };
+		C91936192AE066D20043EC75 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91936182AE066D20043EC75 /* AppConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		C919360E2AE057E70043EC75 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		C91936142AE0601F0043EC75 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		C91936162AE061FA0043EC75 /* cap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = cap.json; path = "../../../../Архив/cap.json"; sourceTree = "<group>"; };
+		C91936182AE066D20043EC75 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				C919360C2AE041920043EC75 /* Extension.swift */,
+				C91936182AE066D20043EC75 /* AppConstants.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				C91935FA2AE03DD80043EC75 /* FlightViewModel.swift in Sources */,
 				C91935F82AE03DA60043EC75 /* FlightView.swift in Sources */,
 				C91936152AE0601F0043EC75 /* NetworkManager.swift in Sources */,
+				C91936192AE066D20043EC75 /* AppConstants.swift in Sources */,
 				C91936002AE03E6C0043EC75 /* FlightCellView.swift in Sources */,
 				C91935E72AE03C1F0043EC75 /* FlightApp_WB_TestTaskApp.swift in Sources */,
 				C91936062AE03F570043EC75 /* LottieView.swift in Sources */,

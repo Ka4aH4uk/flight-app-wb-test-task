@@ -12,6 +12,7 @@ struct FlightApp_WB_TestTaskApp: App {
     var body: some Scene {
         WindowGroup {
             FlightView()
+                .environment(\.locale, .init(identifier: "ru_RU"))
                 .preferredColorScheme(.light)
         }
     }

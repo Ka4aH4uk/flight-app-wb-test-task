@@ -12,8 +12,8 @@ class FlightService: ObservableObject {
     static let shared = FlightService()
     
     func getFlights(completion: @escaping ([Flight]?, Error?) -> Void) {
-        let url = "https://vmeste.wildberries.ru/stream/api/avia-service/v1/suggests/getCheap"
-        
+        let url = AppConstants.API.wildberriesTravelApiURL
+
         let requestData: [String: String] = ["startLocationCode": "LED"]
         
         AF.request(
