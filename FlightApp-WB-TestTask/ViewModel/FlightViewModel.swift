@@ -11,7 +11,7 @@ class FlightViewModel: ObservableObject {
     @Published var flights: [Flight] = []
     @Published var isLoading: Bool = true
     @Published var likedFlights: [Bool] = []
-
+    
     init() {
         loadFlights()
     }
@@ -42,4 +42,3 @@ class FlightViewModel: ObservableObject {
         }
     }
 }
-

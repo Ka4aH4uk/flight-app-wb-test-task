@@ -22,7 +22,7 @@ struct FlightCellView: View {
                         Text("Осталось \(randomNum) билетов по этой цене")
                             .font(.caption2)
                             .foregroundStyle(.red)
-
+                        
                         HStack(spacing: 10) {
                             Image(systemName: "airplane.departure")
                             Text("\(flight.startCity?.rawValue ?? "")")
@@ -66,4 +66,3 @@ struct FlightCellView: View {
     
     return FlightCellView(viewModel: viewModel, flight: Flight(startDate: "2024-01-02 00:00:00 +0000 UTC", endDate: .the000101010000000000UTC, startLocationCode: .led, endLocationCode: "KLF", startCity: .санктПетербург, endCity: "Калуга", serviceClass: "", seats: [], price: 3860, searchToken: "LED020124KLFY100"))
 }
-
