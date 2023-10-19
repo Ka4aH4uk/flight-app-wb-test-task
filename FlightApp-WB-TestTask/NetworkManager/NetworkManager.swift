@@ -6,7 +6,6 @@
 //
 
 import Alamofire
-import Foundation
 
 protocol FlightServiceProtocol {
     func getFlights(completion: @escaping ([Flight]?, Error?) -> Void)

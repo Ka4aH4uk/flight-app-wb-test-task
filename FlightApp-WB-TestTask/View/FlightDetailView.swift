@@ -35,9 +35,6 @@ struct FlightDetailView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                LinearGradient(colors: [.indigo.opacity(0.1), .blue.opacity(0.3)], startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
-                
                 ScrollView {
                     HStack {
                         Text("\(totalFlightPrice) \u{20BD}")
@@ -81,7 +78,6 @@ struct FlightDetailView: View {
                                         .foregroundStyle(.blue)
                                         .font(.subheadline).bold()
                                 }
-
                             }
                         }
                     }
