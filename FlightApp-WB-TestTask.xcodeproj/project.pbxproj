@@ -83,7 +83,7 @@
 				C91935F62AE03D600043EC75 /* ViewModel */,
 				C91936132AE060010043EC75 /* NetworkManager */,
 				C91936042AE03F440043EC75 /* Lottie */,
-				C919360B2AE0417A0043EC75 /* Extension */,
+				C919360B2AE0417A0043EC75 /* Helpers */,
 				C91935EA2AE03C2A0043EC75 /* Assets.xcassets */,
 				C91935EC2AE03C2A0043EC75 /* Preview Content */,
 			);
@@ -135,13 +135,13 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
-		C919360B2AE0417A0043EC75 /* Extension */ = {
+		C919360B2AE0417A0043EC75 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				C919360C2AE041920043EC75 /* Extension.swift */,
 				C91936182AE066D20043EC75 /* AppConstants.swift */,
 			);
-			path = Extension;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C91936132AE060010043EC75 /* NetworkManager */ = {

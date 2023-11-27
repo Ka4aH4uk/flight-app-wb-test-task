@@ -95,7 +95,7 @@ struct FlightDetailView: View {
                     .padding(.leading, 20)
                     
                     HStack {
-                        Text("3ч 40м в пути")
+                        Text(AppConstants.Content.travelTime3h40m)
                             .font(.subheadline)
                             .foregroundStyle(.black.opacity(0.5))
                         Spacer()
@@ -110,7 +110,7 @@ struct FlightDetailView: View {
                             VStack(alignment: .leading) {
                                 Text(AppConstants.Content.airlineText)
                                     .font(.caption)
-                                Text("3ч 40м в полете")
+                                Text(AppConstants.Content.inFlight3h40m)
                                     .font(.caption)
                                     .foregroundStyle(.black.opacity(0.6))
                             }
@@ -122,7 +122,7 @@ struct FlightDetailView: View {
                                         .font(.title).bold()
                                         .multilineTextAlignment(.center)
                                 } label: {
-                                    Label("Подробнее", systemImage: "info")
+                                    Label(AppConstants.Content.moreDetails, systemImage: "info")
                                         .font(.caption2)
                                         .foregroundStyle(.white.opacity(0.9))
                                 }
@@ -168,7 +168,7 @@ struct FlightDetailView: View {
                     .padding(.leading, 20).padding(.top, 20)
                     
                     HStack {
-                        Text("4ч 20м в пути")
+                        Text(AppConstants.Content.travelTime4h20m)
                             .font(.subheadline)
                             .foregroundStyle(.black.opacity(0.5))
                         Spacer()
@@ -183,17 +183,19 @@ struct FlightDetailView: View {
                             VStack(alignment: .leading) {
                                 Text(AppConstants.Content.airlineText)
                                     .font(.caption)
-                                Text("4ч 20м в полете")
+                                Text(AppConstants.Content.inFlight4h20m)
                                     .font(.caption)
                                     .foregroundStyle(.black.opacity(0.6))
                             }
                             Spacer()
                             Button { } label: {
                                 NavigationLink {
-                                    LottieView(name: AppConstants.Design.Lottie.lottieCap, loopMode: .repeat(1))
+                                    LottieView(name: AppConstants.Design.Lottie.lottieCap, 
+                                               loopMode: .repeat(1),
+                                               animationSpeed: 0.5)
                                         .scaleEffect(0.6)
                                 } label: {
-                                    Label("Подробнее", systemImage: "info")
+                                    Label(AppConstants.Content.moreDetails, systemImage: "info")
                                         .font(.caption2)
                                         .foregroundStyle(.white.opacity(0.9))
                                 }

@@ -5,7 +5,6 @@
 //  Created by K4 on 19.10.2023.
 //
 
-
 import SwiftUI
 
 struct AppConstants {
@@ -13,11 +12,20 @@ struct AppConstants {
         static let baggagePrice: Int = 1859
         
         static let bestPriceText = "Лучшая цена за 1 пассажира"
+        
         static let baggageOnText = "Багаж включен"
         static let baggageOffText = "Без багажа"
         static let addBaggageText = "Добавить багаж"
+        
         static let niceTripText = "Приятного полёта и\n мягкой посадки!"
+        
         static let airlineText = "FlightApp"
+        static let moreDetails = "Подробнее"
+        
+        static let inFlight3h40m = "3ч 40м в полете"
+        static let travelTime3h40m = "3ч 40м в пути"
+        static let inFlight4h20m = "4ч 20м в полете"
+        static let travelTime4h20m = "4ч 20м в пути"
     }
     
     struct Tip {
