@@ -9,15 +9,44 @@ import SwiftUI
 
 struct FlightView: View {
     @ObservedObject var viewModel = FlightViewModel()
+    @State private var progress = 0.0
+    @State private var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         NavigationStack {
             VStack {
                 if viewModel.isLoading {
-                    LottieView(name: AppConstants.Design.Lottie.lottieFlight)
-                        .scaleEffect(0.3)
-                        .opacity(0.9)
-                        .frame(width: 20, height: 20)
+                    VStack {
+                        Spacer()
+                    }
+                    VStack {
+                        Spacer()
+                        LottieView(name: AppConstants.Design.Lottie.lottieFlight)
+                            .scaleEffect(0.3)
+                            .opacity(0.9)
+                            .frame(width: 20, height: 20)
+                    }
+                    VStack {
+                        VStack {
+                            Spacer()
+                            Gauge(value: progress, in: 0...100) {
+                                Text("Подготовка к взлету! 🚀")
+                                    .font(.headline)
+                                    .padding()
+                            }
+                            .padding(.bottom, 50)
+                            .tint(Gradient(colors: [.blue.opacity(0.3), .indigo.opacity(0.4)]))
+                            .gaugeStyle(.linearCapacity)
+                            .frame(width: 250, height: 50)
+                            .onReceive(timer) { _ in
+                                withAnimation(
+                                    .easeOut(duration: 5.0)
+                                    .delay(0.2)) {
+                                        progress = 100.0
+                                    }
+                            }
+                        }
+                    }
                 } else if viewModel.error != nil {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .font(.system(size: 100))
@@ -34,7 +63,7 @@ struct FlightView: View {
                             .padding()
                         }
                         .shadow(color: .blue, radius: 1, x: 0, y: 0)
-
+                    
                     List(viewModel.flights, id: \.searchToken) { flight in
                         NavigationLink {
                             FlightDetailView(viewModel: viewModel, flight: flight)
@@ -63,6 +92,7 @@ struct FlightView: View {
                 message: Text(viewModel.error?.localizedDescription ?? "Произошла ошибка при загрузке данных."),
                 dismissButton: .default(Text("OK")) {
                     viewModel.loadFlights()
+                    progress = 0.0
                 }
             )
         }
