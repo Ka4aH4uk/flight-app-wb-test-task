@@ -88,15 +88,16 @@ struct FlightView: View {
         }
         .alert(isPresented: Binding<Bool>(
             get: { viewModel.error != nil },
-            set: { _ in viewModel.error = nil }
+            set: { _ in
+                viewModel.error = nil
+                viewModel.loadFlights()
+                progress = 0.0
+            }
         )) {
             Alert(
                 title: Text("Ошибка"),
                 message: Text(viewModel.error?.localizedDescription ?? "Произошла ошибка при загрузке данных."),
-                dismissButton: .default(Text("OK")) {
-                    viewModel.loadFlights()
-                    progress = 0.0
-                }
+                dismissButton: .default(Text("OK"))
             )
         }
     }
@@ -105,9 +106,3 @@ struct FlightView: View {
 #Preview {
     FlightView()
 }
-
-//                                withAnimation(
-//                                    .easeOut(duration: 5.0)
-//                                    .delay(0.2)) {
-//                                        progress = 100.0
-//                                    }
