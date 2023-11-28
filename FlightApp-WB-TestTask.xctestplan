@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "F2ADEC4D-0E1B-468B-9B73-148E384C6E60",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:FlightApp-WB-TestTask.xcodeproj",
+      "identifier" : "C91935E22AE03C1F0043EC75",
+      "name" : "FlightApp-WB-TestTask"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:FlightApp-WB-TestTask.xcodeproj",
+        "identifier" : "C9FF5BDA2B14BF21008A3FC8",
+        "name" : "FlightApp-WB-TestTaskTests"
+      }
+    }
+  ],
+  "version" : 1
+}
