@@ -30,7 +30,7 @@ struct FlightView: View {
                         VStack {
                             Spacer()
                             Gauge(value: progress, in: 0...100) {
-                                Text("Подготовка к взлету! 🚀")
+                                Text(progress >= 90.0 ? "Штурм облаков ☁️" : "Подготовка к взлету ✈️")
                                     .font(.headline)
                                     .padding()
                             }
@@ -39,11 +39,14 @@ struct FlightView: View {
                             .gaugeStyle(.linearCapacity)
                             .frame(width: 250, height: 50)
                             .onReceive(timer) { _ in
-                                withAnimation(
-                                    .easeOut(duration: 5.0)
-                                    .delay(0.2)) {
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    progress += Double.random(in: 1.0...5.0)
+                                    
+                                    if !viewModel.isLoading {
                                         progress = 100.0
+                                        timer.upstream.connect().cancel()
                                     }
+                                }
                             }
                         }
                     }
@@ -102,3 +105,9 @@ struct FlightView: View {
 #Preview {
     FlightView()
 }
+
+//                                withAnimation(
+//                                    .easeOut(duration: 5.0)
+//                                    .delay(0.2)) {
+//                                        progress = 100.0
+//                                    }

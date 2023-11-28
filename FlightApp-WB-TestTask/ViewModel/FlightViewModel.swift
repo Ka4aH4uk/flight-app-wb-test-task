@@ -29,8 +29,6 @@ class FlightViewModel: ObservableObject {
                     return
                 }
                 
-                self.isLoading = false
-                
                 if let error = error {
                     self.error = error
                     print("Ошибка загрузки данных: \(error.localizedDescription)")
@@ -38,6 +36,8 @@ class FlightViewModel: ObservableObject {
                     self.flights = flights ?? []
                     self.likedFlights = Array(repeating: false, count: self.flights.count)
                 }
+                
+                self.isLoading = false
             }
         }
     }
