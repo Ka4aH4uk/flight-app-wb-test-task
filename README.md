@@ -1,8 +1,11 @@
 # Flight App WB Test Task
 
+"FlightApp" is a small mobile test application developed using SwiftUI. It provides information about cheap flights and allows users to like their favorite flights. The app uses an API for flight data and has some hard-coded elements.
+
+
 ### Описание 
 
-"FlightApp" - это небольшое тестовое мобильное приложение, состоящее из двух экранов и разработанное с помощью SwiftUI. Приложение предоставляет информацию о доступных дешевых авиаперелетах и позволяет пользователям отмечать понравившиеся. Основная функциональность приложения основана на использовании API для получения данных о рейсах, в то время как некоторые элементы являются хардкодом | "FlightApp" is a small mobile test application developed using SwiftUI. It provides information about cheap flights and allows users to like their favorite flights. The app uses an API for flight data and has some hard-coded elements.
+"FlightApp" - это небольшое тестовое мобильное приложение, состоящее из двух экранов и разработанное с помощью SwiftUI. Приложение предоставляет информацию о доступных дешевых авиаперелетах и позволяет пользователям отмечать понравившиеся. Основная функциональность приложения основана на использовании API для получения данных о рейсах, в то время как некоторые элементы являются хардкодом.
 
 ____
 
@@ -58,7 +61,7 @@ ___
 
 ___
 
+**Демонстрация работы приложения:**
+
 https://github.com/Ka4aH4uk/flight-app-wb-test-task/assets/110671395/5ab7fce6-17e0-477a-9f56-43fb43df7758
-
-
 
